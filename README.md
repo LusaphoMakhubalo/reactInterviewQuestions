@@ -9,11 +9,15 @@ JSX (JavaScript Syntax Extension) is a syntax extension for JavaScript that allo
 JSX allows you to write elements and components in a way that looks similar to HTML, but with the full power of JavaScript behind it. For example, you can use JSX to create a simple button element like this:
 
 Code Syntax / Example
-<button>Click me</button>
+
+      <button>Click me</button>
+
 JSX elements can also be used to create custom components, which can be reused throughout your application. For example, you can create a custom "Hello" component like this:
 
 Code Syntax / Example
-const Hello = (props) => <div>Hello, {props.name}</div>
+      
+      const Hello = (props) => <div>Hello, {props.name}</div>
+
 It's important to note that, while JSX looks like HTML, it is actually a different syntax that gets transpiled (converted) to JavaScript by a tool called Babel. When the code is transpiled, JSX elements are transformed into JavaScript function calls, which can be interpreted by the browser.
 
 JSX provides a way to create React components using a syntax that is more familiar to web developers, and it also allows for better code readability, making it easier for developers to understand the structure of the application.
@@ -45,25 +49,26 @@ To use React Router in your application, you need to install it by running npm i
 
 Here is an example of how to use React Router to handle routing in a React application:
 
-Code Syntax / Example
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+  Code Syntax / Example
+  
+      import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 
-function App() {
-  return (
-    <BrowserRouter>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-      </nav>
+      function App() {
+        return (
+          <BrowserRouter>
+            <nav>
+              <Link to="/">Home</Link>
+              <Link to="/about">About</Link>
+            </nav>
 
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="*" component={NotFound} />
-      </Switch>
-    </BrowserRouter>
-  );
-}
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/about" component={About} />
+              <Route path="*" component={NotFound} />
+            </Switch>
+          </BrowserRouter>
+        );
+      }
 
 In this example, we are using the <BrowserRouter> component to wrap the entire application, which allows React Router to handle the client-side routing. We also have two links, one that navigates to the home page and the other one to the about page. The <Switch> component groups together the different routes and the <Route> component specifies which component to render when the route is active.
 
@@ -101,19 +106,21 @@ Synthetic events also provide additional functionality such as the ability to ac
 
 Here is an example of how to handle a click event using a synthetic event in React:
 
-Code Syntax / Example
-function MyButton({ onClick }) {
-  return <button onClick={onClick}>Click me</button>;
-}
+  Code Syntax / Example
 
-function App() {
-  function handleClick(event) {
-    console.log(event.target);  // The target element that was clicked
-    event.preventDefault();    // Prevent the default behavior of the event
-  }
+      function MyButton({ onClick }) {
+        return <button onClick={onClick}>Click me</button>;
+      }
 
-  return <MyButton onClick={handleClick} />;
-}
+      function App() {
+        function handleClick(event) {
+          console.log(event.target);  // The target element that was clicked
+          event.preventDefault();    // Prevent the default behavior of the event
+        }
+
+        return <MyButton onClick={handleClick} />;
+      }
+ 
 In this example, the handleClick function is passed as a prop to the MyButton component. When the button is clicked, React will call the handleClick function and pass it a synthetic event object. The function can then access the event properties and methods, such as event.target and event.preventDefault().
 
 
@@ -155,17 +162,19 @@ Automatic mocking: Jest automatically mocks the modules that you import in your 
 Support for async tests: Jest provides built-in support for testing asynchronous code, which makes it easy to test React components that use lifecycle methods or other async features.
 Here is an example of how to use Jest to test a simple React component:
 
-Code Syntax / Example
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import MyButton from './MyButton';
+  Code Syntax / Example
 
-test('MyButton component', () => {
-  const { getByText } = render(<MyButton />);
-  const button = getByText('Click me');
-  fireEvent.click(button);
-  expect(button).toHaveTextContent('Clicked!');
-});
+      import React from 'react';
+      import { render, fireEvent } from '@testing-library/react';
+      import MyButton from './MyButton';
+
+      test('MyButton component', () => {
+        const { getByText } = render(<MyButton />);
+        const button = getByText('Click me');
+        fireEvent.click(button);
+        expect(button).toHaveTextContent('Clicked!');
+      });
+
 In this example, we are importing the MyButton component and the render and fireEvent functions from the @testing-library/react library. We use the render function to render the component, and the fireEvent.click function to simulate a click event on the button.
 
 With Jest and the testing-library/react, it is easy to test React components, and you can test different scenarios, like click events,
@@ -191,18 +200,24 @@ It's important to note that, testing should be an ongoing process throughout the
 There are several ways to handle async calls in React, depending on the use case and complexity of the application:
 
 Using the async and await keywords: These keywords can be used to handle async calls in a way that makes the code look and behave like synchronous code. For example, you can use await to pause the execution of a function until a promise is resolved, and then use the resolved value in the rest of the function.
-Code Syntax / Example
-async function fetchData() {
-  const response = await fetch('https://my-api.com/data');
-  const data = await response.json();
-  return data;
-}
+
+  Code Syntax / Example
+
+      async function fetchData() {
+        const response = await fetch('https://my-api.com/data');
+        const data = await response.json();
+        return data;
+      }
+
 Using Promise: You can also use Promise directly to handle async calls. This can be useful if you need more fine-grained control over the async flow or if you need to handle multiple async calls in parallel.
-Code Syntax / Example
-fetch('https://my-api.com/data')
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error(error));
+
+  Code Syntax / Example
+
+      fetch('https://my-api.com/data')
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+
 Using a state management library like Redux: If your application is complex and you have multiple async calls, state management libraries like Redux can be a good choice. In this case, you can handle async calls in your action creators, and then update the state of your application with the resolved value.
 
 
@@ -298,28 +313,40 @@ In summary, TypeScript provides more structure and type safety, while JavaScript
 In React, events are used to handle user interactions with the application, such as clicks, form submissions, and key presses. React provides a way to handle events using a syntax that is similar to handling events in HTML. Some examples of events in React are:
 
 onClick: This event is triggered when a user clicks on an element.
-Code Syntax / Example
-<button onClick={handleClick}>Click me</button>
+
+  Code Syntax / Example
+      
+      <button onClick={handleClick}>Click me</button>
 
 onChange: This event is triggered when a user changes the value of an input field.
-Code Syntax / Example
-<input onChange={handleChange}/>
+
+  Code Syntax / Example
+
+      <input onChange={handleChange}/>
 
 onSubmit: This event is triggered when a user submits a form.
-Code Syntax / Example
-<form onSubmit={handleSubmit}>
+
+  Code Syntax / Example
+
+      <form onSubmit={handleSubmit}>
 
 onKeyPress: This event is triggered when a user presses a key on the keyboard.
-Code Syntax / Example
-<input onKeyPress={handleKeyPress}/>
+
+  Code Syntax / Example
+
+      <input onKeyPress={handleKeyPress}/>
 
 onMouseEnter: This event is triggered when a user moves the mouse pointer over an element.
-Code Syntax / Example
-<div onMouseEnter={handleMouseEnter}>
+
+  Code Syntax / Example
+
+      <div onMouseEnter={handleMouseEnter}>
 
 onMouseLeave: This event is triggered when a user moves the mouse pointer away from an element.
-Code Syntax / Example
-<div onMouseLeave={handleMouseLeave}>
+
+  Code Syntax / Example
+
+      <div onMouseLeave={handleMouseLeave}>
 
 In React, event handlers are functions that are called when an event is triggered. These functions can be defined in the component's class or using arrow function inside the JSX element
 
@@ -328,26 +355,32 @@ In React, event handlers are functions that are called when an event is triggere
 There are several ways to make an AJAX call in a React application. Here are a couple of popular approaches:
 
 Using the Fetch API: The Fetch API is a built-in JavaScript API that can be used to make network requests. It can be used to make an AJAX call in a React application like this:
-Code Syntax / Example
-fetch('https://example.com/data')
-    .then(response => response.json())
-    .then(data => {
-        // handle data
-    })
-    .catch(error => {
-        // handle error
-    });
-Using a library: There are several libraries available that provide a more powerful and flexible way to make AJAX calls in a React application. Some popular choices are axios, superagent, and isomorphic-fetch. These libraries provide an easy way to handle responses, errors, and other details of the AJAX call. For example, using axios:
-Code Syntax / Example
-import axios from 'axios';
 
-axios.get('https://example.com/data')
-  .then(response => {
-    console.log(response.data);
-  })
-  .catch(error => {
-    console.log(error);
-  });
+  Code Syntax / Example
+
+      fetch('https://example.com/data')
+          .then(response => response.json())
+          .then(data => {
+              // handle data
+          })
+          .catch(error => {
+              // handle error
+          });
+
+Using a library: There are several libraries available that provide a more powerful and flexible way to make AJAX calls in a React application. Some popular choices are axios, superagent, and isomorphic-fetch. These libraries provide an easy way to handle responses, errors, and other details of the AJAX call. For example, using axios:
+
+  Code Syntax / Example
+ 
+     import axios from 'axios';
+
+      axios.get('https://example.com/data')
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
 It's important to note that, when making an AJAX call, you should always handle the response and errors properly and also, when you are using a library, you should consider the size of the library, that is important for the performance of your application.
 
 Another important aspect to consider is, when to make the ajax call. You should avoid making the call on the render method, as this could lead to unnecessary calls
@@ -382,22 +415,26 @@ styled-components is a library that allows you to write actual CSS code to style
 
 Here's an example of how to use styled-components to create a style component:
 
-Code Syntax / Example
-import styled from 'styled-components'
+  Code Syntax / Example
+  
+      import styled from 'styled-components'
 
-const StyledButton = styled.button`
-  background-color: #4CAF50;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-`
+      const StyledButton = styled.button`
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      `
+
 You can then use this component to create a button that will have the specified styles:
 
-Code Syntax / Example
-<StyledButton>Click me!</StyledButton>
+  Code Syntax / Example
+
+      <StyledButton>Click me!</StyledButton>
+
 Another popular library for styling in React is emotion, it works similarly as styled-components, but it has a slightly different syntax for creating the css.
 
 Styling in React can be a complex topic, but using style components allows you to write modular, maintainable styles that are tightly integrated with your components, making it easier to understand and manage the styles in your application.
@@ -501,27 +538,31 @@ Yes, it is possible to use JavaScript in the return statement of a React compone
 
 For example, you can use a JavaScript variable or a function call within the JSX by enclosing it in curly braces like this:
 
-Code Syntax / Example
-const name = "John";
+  Code Syntax / Example
 
-function App() {
-  return (
-    <div>
-      <h1>Hello, {name}</h1>
-    </div>
-  );
-}
+      const name = "John";
+
+      function App() {
+        return (
+          <div>
+            <h1>Hello, {name}</h1>
+          </div>
+        );
+      }
+
 You can also use JavaScript conditionals, loops and other logic inside the JSX.
 
-Code Syntax / Example
-function App() {
-  const isLoading = true;
-  return (
-    <div>
-      {isLoading ? <h1>Loading...</h1> : <h1>Loaded</h1>}
-    </div>
-  );
-}
+  Code Syntax / Example
+
+      function App() {
+        const isLoading = true;
+        return (
+          <div>
+            {isLoading ? <h1>Loading...</h1> : <h1>Loaded</h1>}
+          </div>
+        );
+      }
+
 It's worth noting that while it is possible to use JavaScript in the return statement of a React component, it's important to keep in mind that React follows a declarative programming paradigm, so you should keep your logic minimal and simple in the JSX to avoid making your codebase hard to understand and maintain.
 
 
@@ -531,42 +572,48 @@ In React, state refers to the data or variables that determine a component's beh
 There are two main ways to use state in React:
 
 Class-based state: In class-based components, state is defined as a class property. It is initialized in the constructor method, and it can be modified using the setState method. The component re-renders when the state changes.
-Code Syntax / Example
-class MyComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 0
-    };
-  }
 
-  handleClick = () => {
-    this.setState({
-      count: this.state.count + 1
-    });
-  }
+  Code Syntax / Example
 
-  render() {
-    return (
-      <button onClick={this.handleClick}>{this.state.count}</button>
-    );
-  }
-}
+      class MyComponent extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            count: 0
+          };
+        }
+
+        handleClick = () => {
+          this.setState({
+            count: this.state.count + 1
+          });
+        }
+
+        render() {
+          return (
+            <button onClick={this.handleClick}>{this.state.count}</button>
+          );
+        }
+      }
+      
 Hooks-based state: With the introduction of hooks in React 16.8, it is possible to use state in functional components. The useState hook allows functional components to manage state. The hook takes an initial value as an argument and returns an array containing the current state and a function to update it.
-Code Syntax / Example
-import { useState } from 'react';
 
-function MyComponent() {
-  const [count, setCount] = useState(0);
+  Code Syntax / Example
 
-  const handleClick = () => {
-    setCount(count + 1);
-  }
+      import { useState } from 'react';
 
-  return (
-    <button onClick={handleClick}>{count}</button>
-  );
-}
+      function MyComponent() {
+        const [count, setCount] = useState(0);
+
+        const handleClick = () => {
+          setCount(count + 1);
+        }
+
+        return (
+          <button onClick={handleClick}>{count}</button>
+        );
+      }
+      
 It's worth noting that state is not always necessary, sometimes props is enough to manage the data. However, state is required when the data changes and it affects the component's behavior or rendering.
 
 In summary, you can use state in react with class-based components or functional components with hooks, both of them have the same purpose, but the way to use it is different.
@@ -580,18 +627,22 @@ An object containing properties for the element
 One or more children for the element
 Here is an example of how to create a div element with a className of "container" and a child p element containing some text:
 
-Code Syntax / Example
-const element = React.createElement('div', { className: 'container' },
-  React.createElement('p', null, 'Hello, world!')
-);
+  Code Syntax / Example
+
+      const element = React.createElement('div', { className: 'container' },
+        React.createElement('p', null, 'Hello, world!')
+      );
+
 In this example, the first argument is the type of the element div, the second argument is an object containing properties { className: 'container' }, and the last argument is the child of the element React.createElement('p', null, 'Hello, world!').
 
 It's worth noting that while React.createElement() is a low-level method and it's possible to use it to create React elements, it's less common to use it directly in a React application, since JSX, a syntax extension for JavaScript, provides a more intuitive and readable way to create React elements.
 
-Code Syntax / Example
-const element = <div className="container">
-    <p>Hello, world!</p>
-</div>
+  Code Syntax / Example
+
+      const element = <div className="container">
+          <p>Hello, world!</p>
+      </div>
+
 Both of the examples above are equivalent and will create the same element.
 
 In summary, React.createElement is a method that allows you to create a React element, it's not used very often because it's more readable to use JSX but it can be useful in some cases.
@@ -602,16 +653,19 @@ In React, it's common to use a syntax extension for JavaScript called JSX that a
 
 Here's an example of JSX code that creates a div element with a className of "container" and a child p element containing some text:
 
-Code Syntax / Example
-const element = <div className="container">
-    <p>Hello, world!</p>
-</div>
+  Code Syntax / Example
+
+      const element = <div className="container">
+          <p>Hello, world!</p>
+      </div>
 This JSX code is equivalent to the following JavaScript code that uses React.createElement() to create the elements:
 
-Code Syntax / Example
-const element = React.createElement("div", { className: "container" },
-  React.createElement("p", null, "Hello, world!")
-);
+  Code Syntax / Example
+
+      const element = React.createElement("div", { className: "container" },
+        React.createElement("p", null, "Hello, world!")
+      );
+
 It's worth noting that you need to transpile JSX code with a tool like Babel to make it compatible with all the browsers, because JSX is not natively supported by all the browsers. Also, React is required to use JSX, the React library needs to be installed in your project to use JSX.
 
 In summary, you can write HTML code in javascript files using JSX, it's a syntax extension that allows you to write HTML-like syntax directly in javascript files, it is transpiled by tools like Babel to React.createElement() code, it's a common practice in React development, and it is not natively supported by all the browsers, so you need to transpile it with tools like Babel.
